@@ -44,7 +44,7 @@ export default function ContactForm() {
   return (
     <div className="contact-container__form">
       <p className="contact-container__form--success-message">
-        {isSubmitSuccessful ? "You have successfully sent your message!" : ""}
+        {isSubmitSuccessful ? "You have successfully sent your message! We will respond you in 24 hours." : ""}
       </p>
       <Form onSubmit={handleSubmit(onSubmit)} >
         {submittingError && <FormError>{submittingError}</FormError>}
