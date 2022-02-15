@@ -1,7 +1,6 @@
 import Heading from "../layout/Heading";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import useAxios from "../../hooks/useAxios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
@@ -16,7 +15,9 @@ const validationSchema = yup.object().shape({
   price: yup.number().required("Please enter the price").positive("Value of price must be a positive number").integer(),
   guests: yup.number().required("Please enter the max number of guests").positive("Number of guests must be a positive number").integer().min(1),
   beds: yup.number().required("Please enter the number of beds").positive("Number of beds must be a positive number").integer().min(1),
-  images: yup.mixed().nullable(),
+  images: yup.mixed().test("numberOFmages", "Please select exactly 5 images", (value) => {
+    return value && value.length === 5;
+  }),
   is_featured: yup.boolean(),
   description: yup.string().required("Please enter the description").min(10, "The description must be at least 10 characters"),
   category: yup.string().required("Please select the category"),
@@ -29,7 +30,7 @@ export default function AdminAddPage() {
   const [success, setSuccess] = useState(null);
 
   const url = BASE_URL + ACCOMMODATION_PATH;
-  const http = useAxios();
+
   document.title = `Holidaze | Admin`;
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -40,30 +41,35 @@ export default function AdminAddPage() {
 
   const handleChange = (e) => {
     console.log(e.target.files);
+    const images = e.target.files;
     if (e.target && e.target.files) {
-      formData.append("file", e.target.files[0]);
+      for (let i = 0; i < images.length; i++) {
+        formData.append("files.images", images[i]);
+      }
     }
   }
 
-  async function onSubmit(data) {
+  async function onSubmit({ name, address, description, guests, beds, price, category, is_featured }) {
     setSubmitting(true);
     setsubmittingError(null);
 
+    const data = JSON.stringify({ name, address, description, guests, beds, price, category, is_featured });
+
     console.log(data);
+    formData.append("data", data);
+
+    const options = {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ0OTIzMTY0LCJleHAiOjE2NDc1MTUxNjR9.q_yXNWOxv1Hq4n9IvYVl1EbwnKJE7murVaOIdU37r9A`,
+      },
+    };
 
     try {
-      const response = await http.post(url, {
-        name: data.name,
-        address: data.address,
-        price: data.price,
-        guests: data.guests,
-        beds: data.beds,
-        images: data.images.url,
-        is_featured: data.is_featured,
-        description: data.description,
-        category: data.category,
-      });
-      console.log("response", response.data);
+      const response = await fetch(url, options);
+      const json = await response.json();
+      console.log("response", json);
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
@@ -112,7 +118,7 @@ export default function AdminAddPage() {
             </Form.Group>
             <Form.Group className="mb-3 add-container__form--form-group" >
               <Form.Label>Images</Form.Label>
-              <input {...register("images")} className="form-control" type="file" accept="image/*" multiple placeholder="Upload images" onChange={handleChange} />
+              <input {...register("images")} className="form-control" type="file" accept="image/*" multiple placeholder="Select 5 images" onChange={handleChange} />
               {errors.images && <FormError>{errors.images.message}</FormError>}
             </Form.Group>
             <Form.Group className="mb-3 add-container__form--form-group" >
