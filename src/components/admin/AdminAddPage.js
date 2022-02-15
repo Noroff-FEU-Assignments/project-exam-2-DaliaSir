@@ -1,12 +1,12 @@
 import Heading from "../layout/Heading";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAxios from "../../hooks/useAxios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import FormError from "../common/FormError";
 import Form from "react-bootstrap/Form";
-
 
 
 const validationSchema = yup.object().shape({
@@ -29,9 +29,9 @@ export default function AdminAddPage() {
   const [submittingError, setsubmittingError] = useState(null);
   const [success, setSuccess] = useState(null);
 
-  const url = BASE_URL + ACCOMMODATION_PATH;
-
   document.title = `Holidaze | Admin`;
+  const url = BASE_URL + ACCOMMODATION_PATH;
+  const http = useAxios();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema),
@@ -40,7 +40,6 @@ export default function AdminAddPage() {
   let formData = new FormData();
 
   const handleChange = (e) => {
-    console.log(e.target.files);
     const images = e.target.files;
     if (e.target && e.target.files) {
       for (let i = 0; i < images.length; i++) {
@@ -54,22 +53,13 @@ export default function AdminAddPage() {
     setsubmittingError(null);
 
     const data = JSON.stringify({ name, address, description, guests, beds, price, category, is_featured });
+    //console.log(data);
 
-    console.log(data);
     formData.append("data", data);
 
-    const options = {
-      method: "POST",
-      body: formData,
-      headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQ0OTIzMTY0LCJleHAiOjE2NDc1MTUxNjR9.q_yXNWOxv1Hq4n9IvYVl1EbwnKJE7murVaOIdU37r9A`,
-      },
-    };
-
     try {
-      const response = await fetch(url, options);
-      const json = await response.json();
-      console.log("response", json);
+      const response = await http.post(url, formData);
+      console.log("response", response.data);
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
