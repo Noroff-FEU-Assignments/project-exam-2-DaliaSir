@@ -13,23 +13,21 @@
     margin: 5px 5px 0 0;
   }
 
-  &__row2 {
+  &__image-container {
     position: relative;
   }
 
-  &__btn-view {
+  &__btn-view.btn-primary {
     position: absolute;
     bottom: 10px;
-    right: 0;
-
-    .btn-primary {
-      text-transform: uppercase;
-      letter-spacing: 0.06rem;
-      color: $colour-ui-primary;
-      background-color: $colour-background;
-      border: none;
-      box-shadow: 2px 2px 2px $colour-ui-shadow;
-    }
+    right: 10px;
+    max-width: 150px;
+    text-transform: uppercase;
+    letter-spacing: 0.06rem;
+    color: $colour-ui-primary;
+    background-color: $colour-background;
+    border: none;
+    box-shadow: 2px 2px 2px $colour-ui-shadow;
   }
 }
 

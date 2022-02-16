@@ -132,7 +132,7 @@ export default function DetailsPage() {
     setSubmitting(true);
     setsubmittingError(null);
 
-    console.log(data);
+    //console.log(data);
 
     try {
       const response = await axios.post(urlEnquiries, data);
@@ -163,7 +163,7 @@ export default function DetailsPage() {
         <Modal.Body>
           <div className="contact-container__form">
             <p className="contact-container__form--success-message">
-              {isSubmitSuccessful ? "You have successfully sent booking!" : ""}
+              {isSubmitSuccessful ? "You have successfully sent booking for!" : ""}
             </p>
             <Form onSubmit={handleSubmit(onSubmit)} >
               {submittingError && <FormError>{submittingError}</FormError>}
@@ -198,20 +198,15 @@ export default function DetailsPage() {
                   <input {...register("check_out")} type="date" />
                   {errors.check_out && <FormError>{errors.check_out.message}</FormError>}
                 </Form.Group>
-                <button type="submit" className="btn btn-primary">{submitting ? 'Booking...' : 'Book'}</button>
+                <Button onClick={props.onHide}>Close</Button>
+                <Button type="submit" className="btn btn-primary">{submitting ? 'Booking...' : 'Book'}</Button>
               </fieldset>
             </Form>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-          {/* <Button onClick={handleBook}>Book</Button> */}
-        </Modal.Footer>
       </Modal>
     );
   }
-
-
 
   return (
     <>
@@ -220,30 +215,21 @@ export default function DetailsPage() {
       </div>
       <Heading content={product.name} />
       <div className="details-container container" >
-        <Row>
-          <Col className="details-container__image details-container__image-main" style={{ backgroundImage: `url(${product.images[0].url})` }}></Col>
+        <Row className="details-container__image-container">
+          {product.images.map((img) => {
+            return <Col className="details-container__image" key={img.id} style={{ backgroundImage: `url(${img.url})`}}></Col>
+          })}
 
-          <Col>
-            <Row>
-              <Col className="details-container__image" style={{ backgroundImage: `url(${product.images[1].url})` }}></Col>
-              <Col className="details-container__image" style={{ backgroundImage: `url(${product.images[2].url})` }}></Col>
-            </Row>
-            <Row className="details-container__row2">
-              <Col className="details-container__image" style={{ backgroundImage: `url(${product.images[3].url})` }}></Col>
-              <Col className="details-container__image" style={{ backgroundImage: `url(${product.images[4].url})` }}></Col>
-              <Col className="details-container__btn-view">
-                <Button variant="primary" onClick={() => setModalImageShow(true)}>
-                  View images
-                </Button>
-              </Col>
-              <ImageModal
-                show={modalImageShow}
-                onHide={() => setModalImageShow(false)}
-              />
-            </Row>
-          </Col>
+
+            <Button variant="primary" className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
+              View images
+            </Button>
+      
+          <ImageModal
+            show={modalImageShow}
+            onHide={() => setModalImageShow(false)}
+          />
         </Row>
-
 
         <Row>
           <p>{product.price} nok / per night</p>
