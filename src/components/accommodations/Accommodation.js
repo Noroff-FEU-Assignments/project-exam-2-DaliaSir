@@ -3,17 +3,22 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-export default function Accommodation({ id, name, image, price }) {
+export default function Accommodation({ id, name, image, price, guests, beds }) {
 
   return (
-    <Col sm={6} md={4} className="g-4" key={id}>
+    <Col sm={6} md={4} className="g-4 g-lg-5" key={id}>
       <Link to={`/detail/${id}`}>
-        <Card >
-          <Card.Img variant="top" src={image} alt={name} />
+        <Card>
+          <div className="card-img-top" style={{ backgroundImage: `url(${image})` }}></div>
           <Card.Body>
             <Card.Title>{name}</Card.Title>
-            <Card.Text>
-              Price: {price}
+            <Card.Text className="card__price">
+              {price} <span>NOK / night</span>
+            </Card.Text>
+            <Card.Text className="card__capacity-info">
+              {guests} guests
+              <span className="dot"></span>
+              {beds} beds
             </Card.Text>
           </Card.Body>
         </Card>

@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, MESSAGE_PATH } from "../../constants/api";
 import FormError from "../common/FormError";
 import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
 
 const url = BASE_URL + MESSAGE_PATH;
 
@@ -42,9 +43,9 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="contact-container__form">
+    <Container className="contact-container__form">
       <p className="contact-container__form--success-message">
-        {isSubmitSuccessful ? "You have successfully sent your message! We will respond you in 24 hours." : ""}
+        {isSubmitSuccessful ? "Success! 🎉 We will contact you within 24 hours." : ""}
       </p>
       <Form onSubmit={handleSubmit(onSubmit)} >
         {submittingError && <FormError>{submittingError}</FormError>}
@@ -67,6 +68,6 @@ export default function ContactForm() {
           <button type="submit" className="btn btn-primary">{submitting ? 'Sending...' : 'Send'}</button>
         </fieldset>
       </Form>
-    </div>
+    </Container>
   );
 }
