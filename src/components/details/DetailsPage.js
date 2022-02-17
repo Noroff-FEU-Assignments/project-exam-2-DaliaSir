@@ -6,6 +6,7 @@ import { BASE_URL, ENQUIRY_PATH } from "../../constants/api";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Heading from "../layout/Heading";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
@@ -209,7 +210,7 @@ export default function DetailsPage() {
   }
 
   return (
-    <>
+    <Container>
       <div className="breadcrumb">
         <Link to={`/accommodations`}>Back</Link>
       </div>
@@ -217,10 +218,8 @@ export default function DetailsPage() {
       <div className="details-container container" >
         <Row className="details-container__image-container">
           {product.images.map((img) => {
-            return <Col className="details-container__image" key={img.id} style={{ backgroundImage: `url(${img.url})`}}></Col>
+            return <Col className="details-container__image col-12 col-sm-6 col-md-3 col-lg-2" key={img.id} style={{ backgroundImage: `url(${img.url})`}}></Col>
           })}
-
-
             <Button variant="primary" className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
               View images
             </Button>
@@ -249,7 +248,7 @@ export default function DetailsPage() {
         />
 
       </div>
-    </>
+    </Container>
   );
 }
 

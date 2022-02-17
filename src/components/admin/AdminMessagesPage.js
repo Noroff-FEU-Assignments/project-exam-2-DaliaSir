@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { BASE_URL, MESSAGE_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
 import MessageItem from "./MessageItem";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
@@ -47,7 +48,7 @@ export default function AdminMessagesPage() {
   }
 
   return (
-    <>
+    <Container>
       <Heading content="Inbox" />
       <Row className="messages-container">
         {messages.map((messageItem) => {
@@ -55,7 +56,7 @@ export default function AdminMessagesPage() {
           return <MessageItem key={id} id={id} name={name} email={email} message={message} />
         })}
       </Row>
-    </>
+    </Container>
   );
 
 }

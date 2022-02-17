@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
 import Accommodation from "./Accommodation";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
@@ -36,7 +37,8 @@ export default function HomePage() {
     }
     fetchAccommodations();
 
-  }, [url]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
     return (
@@ -53,7 +55,7 @@ export default function HomePage() {
 
 
   return (
-    <>
+    <Container>
       <Heading content="Accommodations" />
       <Row className="product-container">
         {accommodations.map((accommodation) => {
@@ -65,6 +67,6 @@ export default function HomePage() {
           return <Accommodation key={id} id={id} name={name} image={imageUrl} price={price} />
         })}
       </Row>
-    </>
+    </Container>
   );
 }

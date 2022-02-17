@@ -5,8 +5,13 @@ html {
 body {
   margin: 0 auto;
   font-family: $font-primary;
+  color: $colour-ui-primary;
 }
 
 .card-img-top {
   max-width: 300px;
+}
+
+.container {
+  padding: 0;
 }

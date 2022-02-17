@@ -1,5 +1,4 @@
 import Navigation from "./components/layout/Navigation";
-import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import HomePage from "./components/home/HomePage";
@@ -18,18 +17,16 @@ function App() {
     <AuthProvider>
       <Router>
         <Navigation />
-        <Container>
-          <Routes>
-            <Route path="/" exact="true" element={<HomePage />} />
-            <Route path="/accommodations" element={<AccommodationsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/signin" element={<SigninPage />} />
-            <Route path="/admin/add" element={<AdminAddPage />} />
-            <Route path="/admin/messages" element={<AdminMessagesPage />} />
-            <Route path="/admin/enquires" element={<AdminEnquiresPage />} />
-            <Route path="/detail/:id" element={<DetailsPage />} />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" exact="true" element={<HomePage />} />
+          <Route path="/accommodations" element={<AccommodationsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/admin/add" element={<AdminAddPage />} />
+          <Route path="/admin/messages" element={<AdminMessagesPage />} />
+          <Route path="/admin/enquires" element={<AdminEnquiresPage />} />
+          <Route path="/detail/:id" element={<DetailsPage />} />
+        </Routes>
       </Router>
     </AuthProvider>
   );

@@ -1,0 +1,118 @@
+/*-------BANNER------*/
+
+.top-banner {
+  width: 100%;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: $colour-primary;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.top-banner__search-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10% 20px 0 20px;
+
+  h2 {
+    color: $colour-ui-secondary;
+    margin-bottom: 10px;
+  }
+
+  &--service {
+    max-width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto 30px auto;
+    font-size: 0.875rem;
+    p {
+      margin-bottom: 0;
+      color: $colour-ui-secondary;
+    }
+  }
+
+  &--link {
+    background-color: $colour-primary;
+    border-radius: 5px;
+    max-width: 250px;
+    margin: 20px auto 0 auto;
+    box-shadow: 5px 5px 5px $colour-ui-shadow;
+    border: 2px solid $colour-primary-shade;
+
+    &:hover {
+      background-color: $colour-background;
+    }
+  }
+
+  &--search-bar {
+    position: relative;
+  }
+}
+
+/*---------SEARCH------*/
+
+.search-dropdown {
+  background-color: $colour-ui-secondary;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px $colour-ui-shadow;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+
+  &__item--link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid $colour-background;
+
+    div {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: inline-block;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      margin-left: 10px;
+    }
+  }
+}
+
+@media (min-width: $bootstrap-lg) {
+  .top-banner {
+    height: 700px;
+  }
+
+  .top-banner__search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10% 0;
+
+    &--service {
+      margin: 0 auto 40px auto;
+      font-size: 1rem;
+    }
+
+    &--link {
+      background-color: $colour-primary;
+      border-radius: 5px;
+      max-width: 350px;
+      margin: 20px auto 0 auto;
+      a {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}

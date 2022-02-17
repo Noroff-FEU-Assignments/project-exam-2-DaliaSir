@@ -1,10 +1,12 @@
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Container from "react-bootstrap/Container";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import logo from "../../images/holidaze-logo2.png";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Button from "react-bootstrap/Button";
 
 export default function Navigation() {
   const [auth, setAuth] = useContext(AuthContext);
@@ -17,13 +19,15 @@ export default function Navigation() {
   }
 
   return (
-    <Navbar bg="light" variant="light" expand="lg">
+    <Navbar expand="lg">
       <Container>
         <NavLink className="nav-brand-link" to="/" exact="true">
-          <Navbar.Brand>Holidaze</Navbar.Brand>
+          <Navbar.Brand>
+            <img src={logo} alt="Holidaze logo" />
+          </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
             {auth ? (
               <>
@@ -35,14 +39,14 @@ export default function Navigation() {
                   <NavLink to="/admin/enquires" className="dropdown-item">Enquires</NavLink>
                   <NavLink to="/admin/add" className="dropdown-item">Add New</NavLink>
                 </NavDropdown>
-                <button className="btn btn-primary" onClick={signout}>Sign out</button>
+                <Button className="mx-auto" onClick={signout}>Sign out</Button>
               </>
             ) : (
               <>
                 <NavLink to="/" exact="true" className="nav-link">Home</NavLink>
                 <NavLink to="/accommodations" className="nav-link">Accommodations</NavLink>
                 <NavLink to="/contact" className="nav-link">Contact</NavLink>
-                <NavLink to="/signin" className="nav-link">Sign in</NavLink>
+                <NavLink to="/signin" className="nav-link navbar-nav__signin btn mx-auto">Sign in</NavLink>
               </>
             )}
           </Nav>

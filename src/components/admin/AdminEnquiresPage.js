@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { BASE_URL, ENQUIRY_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
 import EnquiryItem from "./EnquiryItem";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
@@ -48,7 +49,7 @@ export default function AdminEnquiresPage() {
   }
 
   return (
-    <>
+    <Container>
       <Heading content="Enquires" />
       <Row className="messages-container">
         {enquiries.map((enquiryItem) => {
@@ -56,7 +57,7 @@ export default function AdminEnquiresPage() {
           return <EnquiryItem key={id} id={id} name={name} email={email} phone={phone} guests={guests} check_in={check_in} check_out={check_out} />
         })}
       </Row>
-    </>
+    </Container>
   );
 
 }

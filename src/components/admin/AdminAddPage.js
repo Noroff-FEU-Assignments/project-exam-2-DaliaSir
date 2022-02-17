@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import FormError from "../common/FormError";
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 
 
@@ -72,7 +73,7 @@ export default function AdminAddPage() {
 
 
   return (
-    <>
+    <Container>
       <Heading content="Add New Accommodation" />
       <div className="add-container__form">
         <p className="add-container__form--success-message">
@@ -135,7 +136,7 @@ export default function AdminAddPage() {
           </fieldset>
         </Form>
       </div>
-    </>
+    </Container>
   );
 }
 
