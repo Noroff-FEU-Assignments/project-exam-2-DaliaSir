@@ -1,0 +1,68 @@
+/*---MESSAGES---*/
+
+.inbox-container {
+  background-color: $colour-background;
+}
+
+.messages-container {
+  max-width: 600px;
+}
+
+.messageItem-card {
+  margin-bottom: 20px;
+  border-radius: 5px;
+
+  .card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: $colour-background-banner;
+    &__name {
+      font-size: 1.125rem;
+      margin-right: 10px;
+    }
+    &__email {
+      font-weight: 300;
+      margin-right: 10px;
+    }
+    &__date {
+      font-style: italic;
+      font-size: 0.875rem;
+    }
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px 16px;
+    &__subject {
+      span {
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+    }
+    &__button {
+      background-color: $colour-primary;
+      border-color: $colour-primary-shade;
+      color: $colour-ui-primary;
+      box-shadow: 3px 3px 3px $colour-ui-shadow;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.messages-modal {
+  &__date {
+    font-style: italic;
+  }
+  .modal-header {
+    background-color: $colour-background-banner;
+  }
+}

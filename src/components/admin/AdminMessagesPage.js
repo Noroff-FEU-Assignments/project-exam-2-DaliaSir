@@ -4,7 +4,6 @@ import { BASE_URL, MESSAGE_PATH } from "../../constants/api";
 import useAxios from "../../hooks/useAxios";
 import MessageItem from "./MessageItem";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 
@@ -33,6 +32,7 @@ export default function AdminMessagesPage() {
     }
     fetchMessages();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
 
   if (loading) {
@@ -48,16 +48,19 @@ export default function AdminMessagesPage() {
   }
 
   return (
-    <Container>
+    <div className="inbox-container">
       <Heading content="Inbox" />
-      <Row className="messages-container">
+      <Container className="messages-container">
         {messages.map((messageItem) => {
-          const { id, name, email, message } = messageItem;
-          return <MessageItem key={id} id={id} name={name} email={email} message={message} />
+          const { id, created_at, name, email, subject, message } = messageItem;
+          return <MessageItem key={id} id={id} name={name} email={email} subject={subject} message={message} created_at={new Intl.DateTimeFormat("en-GB", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit"
+          }).format(created_at.firstSale)} />
         })}
-      </Row>
-    </Container>
+      </Container>
+    </div>
   );
-
 }
 
