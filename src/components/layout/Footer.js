@@ -38,17 +38,19 @@ export default function Footer() {
           <Heading content="Follow" size="6" />
           <div className="footer-container__list--icons">
             <div className="footer-container__list--item footer-container__list--icon">
-              <i class="fab fa-instagram"></i>
+              <i className="fab fa-instagram"></i>
             </div>
             <div className="footer-container__list--item footer-container__list--icon">
-              <i class="fab fa-facebook"></i>
+              <i className="fab fa-facebook"></i>
             </div>
             <div className="footer-container__list--item footer-container__list--icon">
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
             </div>
           </div>
         </Col>
       </Row>
+      <div className="footer-copy">Copyright © Holidaze 2022</div>
     </footer>
+
   )
 };

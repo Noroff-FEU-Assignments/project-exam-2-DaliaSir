@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { BASE_URL, ENQUIRY_PATH } from "../../constants/api";
@@ -16,6 +16,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import FormError from "../common/FormError";
 import Form from "react-bootstrap/Form";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Please enter your full name").min(3, "Full name must be at least 3 characters"),
@@ -80,7 +81,7 @@ export default function DetailsPage() {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        className="details-modal"
+        className="details-modal-view"
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body >
@@ -155,6 +156,7 @@ export default function DetailsPage() {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         animation
+        className="enquiry-modal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -162,45 +164,45 @@ export default function DetailsPage() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="contact-container__form">
-            <p className="contact-container__form--success-message">
-              {isSubmitSuccessful ? "You have successfully sent booking for!" : ""}
+          <div className="enquiry-modal__form">
+            <p className="enquiry-modal__form--success-message">
+              {isSubmitSuccessful ? "Success! Your booking is sent." : ""}
             </p>
             <Form onSubmit={handleSubmit(onSubmit)} >
               {submittingError && <FormError>{submittingError}</FormError>}
               <fieldset disabled={submitting}>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group" >
                   <Form.Label>Full Name</Form.Label>
                   <input {...register("name")} className="form-control" placeholder="Your full name" />
                   {errors.name && <FormError>{errors.name.message}</FormError>}
                 </Form.Group>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group" >
                   <Form.Label>Email</Form.Label>
                   <input {...register("email")} className="form-control" placeholder="Your email address" />
                   {errors.email && <FormError>{errors.email.message}</FormError>}
                 </Form.Group>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group" >
                   <Form.Label>Phone</Form.Label>
                   <input {...register("phone")} className="form-control" placeholder="Your phone number" />
                   {errors.phone && <FormError>{errors.phone.message}</FormError>}
                 </Form.Group>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group" >
                   <Form.Label>Guests</Form.Label>
                   <input {...register("guests")} className="form-control" placeholder="Number of guests" />
                   {errors.guests && <FormError>{errors.guests.message}</FormError>}
                 </Form.Group>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group enquiry-modal__form--check" >
                   <Form.Label>Check in</Form.Label>
                   <input {...register("check_in")} type="date" />
                   {errors.check_in && <FormError>{errors.check_in.message}</FormError>}
                 </Form.Group>
-                <Form.Group className="mb-3 contact-container__form--form-group" >
+                <Form.Group className="mb-3 enquiry-modal__form--form-group enquiry-modal__form--check" >
                   <Form.Label>Check out</Form.Label>
                   <input {...register("check_out")} type="date" />
                   {errors.check_out && <FormError>{errors.check_out.message}</FormError>}
                 </Form.Group>
-                <Button onClick={props.onHide}>Close</Button>
-                <Button type="submit" className="btn btn-primary">{submitting ? 'Booking...' : 'Book'}</Button>
+                <Button className="enquiry-modal__form--btn-close" onClick={props.onHide}>Close</Button>
+                <Button type="submit">{submitting ? 'Booking...' : 'Book'}</Button>
               </fieldset>
             </Form>
           </div>
@@ -210,52 +212,46 @@ export default function DetailsPage() {
   }
 
   return (
-    <Container>
-      <div className="breadcrumb">
-        <Link to={`/accommodations`}>Back</Link>
-      </div>
+    <div className="details-container container">
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/accommodations">Accommodations</Breadcrumb.Item>
+        <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
+      </Breadcrumb>
       <Heading content={product.name} />
-      <div className="details-container container" >
-        <Row className="details-container__image-container">
-          {product.images.map((img) => {
-            return <Col className="details-container__image col-12 col-sm-6 col-md-3 col-lg-2" key={img.id} style={{ backgroundImage: `url(${img.url})`}}></Col>
-          })}
-            <Button variant="primary" className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
-              View images
-            </Button>
-      
-          <ImageModal
-            show={modalImageShow}
-            onHide={() => setModalImageShow(false)}
-          />
-        </Row>
 
-        <Row>
-          <p>{product.price} nok / per night</p>
-          <div>
-            <p>Guests {product.guests}</p>
-            <p>Beds {product.beds}</p>
-          </div>
-          <p>{product.address}</p>
-          <p>{product.description}</p>
-        </Row>
-        <Button variant="primary" onClick={() => setModalBookShow(true)}>
-          Book
+      <Row className="details-container__image-container">
+        {product.images.map((img) => {
+          return <Col className="details-container__image col-12 col-sm-6 col-md-3 col-lg-2" key={img.id} style={{ backgroundImage: `url(${img.url})` }}></Col>
+        })}
+        <Button className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
+          View images
         </Button>
-        <BookModal
-          show={modalBookShow}
-          onHide={() => setModalBookShow(false)}
-        />
 
-      </div>
-    </Container>
+        <ImageModal
+          show={modalImageShow}
+          onHide={() => setModalImageShow(false)}
+        />
+      </Row>
+
+      <Row className="details-container__info">
+        <p className="details-container__info--price">{product.price} <span>NOK / per night</span></p>
+        <div className="details-container__info--capacity">
+          <p><i className="fas fa-user-friends"></i>  <span>Guests</span> {product.guests}</p>
+          <div className="dot"></div>
+          <p><i className="fas fa-bed"></i> <span>Beds</span> {product.beds}</p>
+        </div>
+        <p className="details-container__info--address">{product.address}</p>
+        <p className="details-container__info--description">{product.description}</p>
+      </Row>
+      <Button className="details-container__btn-book" onClick={() => setModalBookShow(true)}>
+        Book
+      </Button>
+      <BookModal
+        show={modalBookShow}
+        onHide={() => setModalBookShow(false)}
+      />
+
+    </div>
   );
 }
-
-// let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
-// if (product.images.length > 0) {
-//   for (let i = 0; i < product.images.length; i++) {
-//     imageUrl = product.images[1].url;
-//   }
-  
-// }

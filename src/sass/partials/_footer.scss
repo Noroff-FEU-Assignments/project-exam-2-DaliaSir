@@ -46,6 +46,14 @@
   }
 }
 
+.footer-copy {
+  background-color: $colour-background-footer;
+  color: $colour-ui-secondary;
+  text-align: center;
+  font-size: 0.875rem;
+  padding: 0 20px 20px 20px;
+}
+
 @media (min-width: $bootstrap-md) {
   .footer-container {
     flex-direction: row;

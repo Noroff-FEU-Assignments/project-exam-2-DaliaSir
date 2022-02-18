@@ -46,7 +46,7 @@ export default function ContactForm() {
   return (
     <Container className="contact-container__form">
       <p className="contact-container__form--success-message">
-        {isSubmitSuccessful ? "Success!  We will contact you within 24 hours." : ""}
+        {isSubmitSuccessful ? "Success! We will contact you within 24 hours." : ""}
       </p>
       <Form onSubmit={handleSubmit(onSubmit)} >
         {submittingError && <FormError>{submittingError}</FormError>}
