@@ -99,13 +99,14 @@
   .modal-footer {
     border: none;
     .btn-primary {
-      background-color: $colour-secondary;
-      border-color: $colour-background-footer;
+      color: $colour-ui-secondary;
+      background-color: $colour-background-text;
+      border: 2px solid $colour-background-text-shade;
       text-transform: uppercase;
       letter-spacing: 0.06rem;
       &:hover {
         color: $colour-ui-primary;
-        background-color: $colour-background;
+        background-color: transparent;
       }
     }
   }
