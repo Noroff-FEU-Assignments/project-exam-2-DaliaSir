@@ -9,6 +9,7 @@ import AdminAddPage from "./components/admin/AdminAddPage";
 import AdminMessagesPage from "./components/admin/AdminMessagesPage";
 import AdminEnquiresPage from "./components/admin/AdminEnquiresPage";
 import DetailsPage from "./components/details/DetailsPage";
+import Footer from "./components/layout/Footer";
 import "./sass/style.scss";
 
 
@@ -17,16 +18,19 @@ function App() {
     <AuthProvider>
       <Router>
         <Navigation />
-        <Routes>
-          <Route path="/" exact="true" element={<HomePage />} />
-          <Route path="/accommodations" element={<AccommodationsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/admin/add" element={<AdminAddPage />} />
-          <Route path="/admin/messages" element={<AdminMessagesPage />} />
-          <Route path="/admin/enquires" element={<AdminEnquiresPage />} />
-          <Route path="/detail/:id" element={<DetailsPage />} />
-        </Routes>
+        <div className="main-wrapper">
+          <Routes>
+            <Route path="/" exact="true" element={<HomePage />} />
+            <Route path="/accommodations" element={<AccommodationsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/signin" element={<SigninPage />} />
+            <Route path="/admin/add" element={<AdminAddPage />} />
+            <Route path="/admin/messages" element={<AdminMessagesPage />} />
+            <Route path="/admin/enquires" element={<AdminEnquiresPage />} />
+            <Route path="/detail/:id" element={<DetailsPage />} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
     </AuthProvider>
   );

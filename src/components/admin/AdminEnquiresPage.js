@@ -49,15 +49,17 @@ export default function AdminEnquiresPage() {
   }
 
   return (
-    <Container>
+    <div className="enquiries-container">
       <Heading content="Enquires" />
-      <Row className="messages-container">
-        {enquiries.map((enquiryItem) => {
-          const { id, name, email, phone, guests, check_in, check_out } = enquiryItem;
-          return <EnquiryItem key={id} id={id} name={name} email={email} phone={phone} guests={guests} check_in={check_in} check_out={check_out} />
-        })}
-      </Row>
-    </Container>
+      <Container>
+        <Row>
+          {enquiries.map((enquiryItem) => {
+            const { id, name, email, phone, guests, check_in, check_out } = enquiryItem;
+            return <EnquiryItem key={id} id={id} name={name} email={email} phone={phone} guests={guests} check_in={check_in} check_out={check_out} />
+          })}
+        </Row>
+      </Container>
+    </div>
   );
 
 }

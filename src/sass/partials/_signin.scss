@@ -1,10 +1,11 @@
-.contact-container {
+.signin-container {
   background-color: $colour-background;
+  padding-bottom: 60px;
   min-height: 100vh;
-  padding: 0 20px 60px 20px;
 
   &__form {
     max-width: $bootstrap-md;
+    padding: 20px 20px;
 
     .btn.btn-primary {
       color: $colour-ui-primary;
@@ -14,18 +15,10 @@
       text-transform: uppercase;
       font-size: 1.125rem;
       letter-spacing: 0.05rem;
+      margin-top: 20px;
       &:hover {
         background-color: transparent;
       }
-    }
-
-    &--success-message {
-      color: $colour-success;
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.125rem;
-      font-weight: 600;
-      text-transform: uppercase;
     }
   }
 }

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function HomePage() {
   document.title = `Holidaze | Home`;
   return (
-    <>
+    <div className="home-container">
       <div className="top-banner" style={{ backgroundImage: `url(${topBanner})` }}>
         <div className="top-banner__search-container">
           <Heading size="2" content="Find a Place to stay in Bergen" />
@@ -26,7 +26,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 
 }
