@@ -21,9 +21,8 @@
 		<path fill="#205C81" stroke="#FFFFFF" stroke-width="5.6693" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
 		M36.191,80.149l41.29,46.601l52.5-52.5l52.5,52.5l41.435-46.765l0.08-0.043c-17.208-34.497-52.845-58.192-94.015-58.192
 		c-41.201,0-76.859,23.73-94.053,58.268"/>
-	<circle fill="none" stroke="#205C81" stroke-width="7.0866" stroke-miterlimit="10" cx="129.981" cy="126.75" r="105"/>
+	<circle fill="none" stroke="#FFFFFF" stroke-width="7.0866" stroke-miterlimit="10" cx="129.981" cy="126.75" r="105"/>
 	<path fill="#FFFFFF" d="M147.481,168.671c0,1.148-0.931,2.079-2.079,2.079H114.56c-1.148,0-2.079-0.931-2.079-2.079v-30.842
 		c0-1.148,0.931-2.079,2.079-2.079h30.842c1.148,0,2.079,0.931,2.079,2.079V168.671z"/>
 </g>
-<text transform="matrix(1 0 0 1 100.9689 195.7188)" display="none" fill="#FFFFFF" font-family="'MyriadPro-Regular'" font-size="88">H</text>
 </svg>

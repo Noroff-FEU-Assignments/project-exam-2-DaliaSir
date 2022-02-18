@@ -1,6 +1,6 @@
 import Heading from "./Heading";
 import { Link } from "react-router-dom";
-import smallLogo from "../../images/logo-single-houses.svg";
+import smallLogo from "../../images/logo-white.svg";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
