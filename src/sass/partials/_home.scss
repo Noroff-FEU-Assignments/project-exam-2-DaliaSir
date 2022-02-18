@@ -25,7 +25,7 @@
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
-  padding: 10% 20px 0 20px;
+  padding: 8% 20px 0 20px;
 
   h2 {
     color: $colour-ui-secondary;
@@ -43,6 +43,7 @@
     p {
       margin-bottom: 0;
       color: $colour-ui-secondary;
+      padding: 0 5px;
     }
   }
 
