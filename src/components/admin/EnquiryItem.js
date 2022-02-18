@@ -17,8 +17,6 @@ function EnquiryItem({ id, name, email, phone, guests, check_in, check_out }) {
             <div className="card-header__check--in"> <span>Check in:</span> {check_in}</div>
             <div className="card-header__check--out"> <span>Check out:</span> {check_out}</div>
           </div>
-
-
         </Card.Body>
       </Card>
     </Col>
