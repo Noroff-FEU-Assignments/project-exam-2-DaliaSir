@@ -1,9 +1,12 @@
 import topBanner from "../../images/mao-yuqing-15-unsplash155.jpg"
 import bottomBanner from "../../images/sharon-christina-rorvik-unsplash.jpg";
+import planeImage from "../../images/plane.svg"
+import planeTail from "../../images/plane-tail2.svg"
 import Heading from "../layout/Heading";
 import SearchAccommodations from "./SearchAccommodations";
 import BestSellers from "./BestSellers";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default function HomePage() {
   document.title = `Holidaze | Home`;
@@ -26,6 +29,18 @@ export default function HomePage() {
             <Link to="/accommodations" className="btn">View all Accommodations</Link>
           </div>
         </div>
+      </div>
+
+      <div className="subscribe-banner">
+        <div className="subscribe-banner__text">
+          <p>Get en extra 20% off for your next holiday</p>
+        </div>
+        <div className="subscribe-banner__plane-tail" style={{ backgroundImage: `url(${planeTail})` }}></div>
+        <div className="subscribe-banner__subscribe">
+          <input type="email" className="form-control" placeholder="name@example.com" />
+          <Button>Subscribe</Button>
+        </div>
+        <div className="subscribe-banner__plane" style={{ backgroundImage: `url(${planeImage})` }}></div>
       </div>
 
       <div className="best-sellers">
