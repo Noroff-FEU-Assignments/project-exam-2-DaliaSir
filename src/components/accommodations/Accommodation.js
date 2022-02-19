@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Accommodation({ id, name, image, price, guests, beds }) {
 
   return (
-    <Col sm={6} md={4} className="g-4 g-lg-5" key={id}>
+    <Col sm={6} lg={3} key={id}>
       <Link to={`/detail/${id}`}>
         <Card>
           <div className="card-img-top" style={{ backgroundImage: `url(${image})` }}></div>

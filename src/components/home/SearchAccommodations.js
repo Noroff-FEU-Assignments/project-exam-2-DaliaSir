@@ -30,7 +30,7 @@ export default function SearchAccommodations() {
   }, [url]);
 
   if (loading) {
-    return <div>Loading...</div >
+    return <></>
   }
   if (error) {
     return console.log(error);
