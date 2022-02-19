@@ -2,6 +2,7 @@ import topBanner from "../../images/mao-yuqing-15-unsplash155.jpg"
 import bottomBanner from "../../images/sharon-christina-rorvik-unsplash.jpg";
 import Heading from "../layout/Heading";
 import SearchAccommodations from "./SearchAccommodations";
+import BestSellers from "./BestSellers";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
@@ -10,7 +11,7 @@ export default function HomePage() {
     <div className="home-container">
       <div className="top-banner" style={{ backgroundImage: `url(${topBanner})` }}>
         <div className="top-banner__search-container">
-          <Heading size="2" content="Find a Place to stay in Bergen" />
+          <Heading size="1" content="Find a Place to stay in Bergen" />
           <div className="top-banner__search-container--service">
             <p>safe and easy booking</p>
             <span className="dot"></span>
@@ -26,6 +27,12 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      <div className="best-sellers">
+        <Heading size="2" content="Our Best Sellers" />
+        <BestSellers />
+      </div>
+
       <div className="bottom-banner" style={{ backgroundImage: `url(${bottomBanner})` }}>
         <div className="bottom-banner__text-container">
           <div className="bottom-banner__text-container--text">

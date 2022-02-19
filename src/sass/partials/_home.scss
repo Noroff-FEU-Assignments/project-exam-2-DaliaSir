@@ -30,6 +30,7 @@
       margin-bottom: 0;
       color: $colour-ui-secondary;
       padding: 0 5px;
+      text-shadow: 5px 3px 3px rgb(0 0 0 / 80%);
     }
   }
   &--link {
@@ -45,10 +46,12 @@
   }
   &--search-bar {
     position: relative;
+    max-width: 500px;
+    margin: 0 auto;
   }
-  h2 {
+  h1 {
     color: $colour-ui-secondary;
-    margin-bottom: 10px;
+    text-shadow: 5px 5px 5px $colour-ui-shadow;
   }
 }
 
@@ -77,6 +80,20 @@
       background-size: cover;
       margin-left: 10px;
     }
+  }
+}
+
+/*--------------------- BEST SELLERS--------------------*/
+
+.best-sellers {
+  h2 {
+    text-align: start;
+    background-color: $colour-background-text;
+    color: $colour-ui-secondary;
+    padding: 10px 20px 0 20px;
+    max-width: fit-content;
+    margin-bottom: 40px;
+    border-radius: 0 5px 5px 0;
   }
 }
 
@@ -140,7 +157,7 @@
     height: 700px;
   }
   .top-banner__search-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     text-align: center;
     padding: 10% 0;
@@ -180,6 +197,15 @@
 }
 
 @media (min-width: $bootstrap-xl) {
+  /*---TOP BANNER---*/
+
+  .top-banner__search-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 8% 0;
+  }
+
   /*---BOTTOM BANNER---*/
   .bottom-banner {
     &__text-container {
