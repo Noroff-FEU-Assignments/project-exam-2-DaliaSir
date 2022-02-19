@@ -1,9 +1,8 @@
 .home-container {
-  padding-bottom: 60px;
   min-height: 100vh;
 }
 
-/*-------BANNER------*/
+/*--------------------- TOP BANNER--------------------*/
 
 .top-banner {
   width: 100%;
@@ -11,14 +10,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
-
-.dot {
-  height: 8px;
-  width: 8px;
-  background-color: $colour-primary;
-  border-radius: 50%;
-  display: inline-block;
+  margin-bottom: 40px;
 }
 
 .top-banner__search-container {
@@ -26,12 +18,6 @@
   margin: 0 auto;
   text-align: center;
   padding: 8% 20px 0 20px;
-
-  h2 {
-    color: $colour-ui-secondary;
-    margin-bottom: 10px;
-  }
-
   &--service {
     max-width: 500px;
     display: flex;
@@ -46,7 +32,6 @@
       padding: 0 5px;
     }
   }
-
   &--link {
     background-color: $colour-primary;
     border-radius: 5px;
@@ -54,18 +39,20 @@
     margin: 20px auto 0 auto;
     box-shadow: 5px 5px 5px $colour-ui-shadow;
     border: 2px solid $colour-primary-shade;
-
     &:hover {
       background-color: $colour-background;
     }
   }
-
   &--search-bar {
     position: relative;
   }
+  h2 {
+    color: $colour-ui-secondary;
+    margin-bottom: 10px;
+  }
 }
 
-/*---------SEARCH------*/
+/*---------SEARCH---------*/
 
 .search-dropdown {
   background-color: $colour-ui-secondary;
@@ -74,14 +61,12 @@
   position: absolute;
   width: 100%;
   z-index: 3;
-
   &__item--link {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 16px;
     border-bottom: 1px solid $colour-background;
-
     div {
       width: 50px;
       height: 50px;
@@ -95,22 +80,74 @@
   }
 }
 
+/*--------------------- BOTTOM BANNER--------------------*/
+
+.bottom-banner {
+  width: 100%;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  &__text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+    &--text {
+      font-family: $font-secondary;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: $colour-ui-secondary;
+      line-height: 4.5rem;
+      text-shadow: 5px 5px 5px $colour-ui-shadow;
+    }
+    &--link {
+      background-color: $colour-primary;
+      border-radius: 5px;
+      max-width: 250px;
+      margin: 20px auto 0 auto;
+      box-shadow: 5px 5px 5px $colour-ui-shadow;
+      border: 2px solid $colour-primary-shade;
+      &:hover {
+        background-color: $colour-background;
+      }
+    }
+  }
+}
+
+/*--------------------- MEDIA--------------------*/
+
+@media (min-width: $bootstrap-md) {
+  /*---BOTTOM BANNER---*/
+  .bottom-banner {
+    &__text-container {
+      &--text {
+        font-size: 6rem;
+        line-height: 6rem;
+      }
+    }
+  }
+}
+
 @media (min-width: $bootstrap-lg) {
+  /*---TOP BANNER---*/
   .top-banner {
     height: 700px;
   }
-
   .top-banner__search-container {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
     padding: 10% 0;
-
     &--service {
       margin: 0 auto 40px auto;
       font-size: 1rem;
     }
-
     &--link {
       background-color: $colour-primary;
       border-radius: 5px;
@@ -119,6 +156,34 @@
       a {
         font-size: 1.25rem;
       }
+    }
+  }
+
+  /*---BOTTOM BANNER---*/
+  .bottom-banner {
+    display: inline-block;
+    &__text-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 14%;
+      &--text {
+        font-size: 7rem;
+        line-height: 6rem;
+      }
+      &--link {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: $bootstrap-xl) {
+  /*---BOTTOM BANNER---*/
+  .bottom-banner {
+    &__text-container {
+      margin-top: 10%;
     }
   }
 }
