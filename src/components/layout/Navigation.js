@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 import AuthContext from "../../context/AuthContext";
 import logo from "../../images/Holidaze logo.svg";
 import Navbar from "react-bootstrap/Navbar";
@@ -21,32 +22,52 @@ export default function Navigation() {
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
-        <NavLink className="nav-brand-link" to="/" exact="true">
+        <LinkContainer to="/" exact="true">
           <Navbar.Brand>
             <img src={logo} alt="Holidaze logo" />
           </Navbar.Brand>
-        </NavLink>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
             {auth ? (
               <>
-                <NavLink to="/" exact="true" className="nav-link">Home</NavLink>
-                <NavLink to="/accommodations" className="nav-link">Accommodations</NavLink>
-                <NavLink to="/contact" className="nav-link">Contact</NavLink>
-                <NavDropdown title="Admin" id="basic-nav-dropdown">
-                  <NavLink to="/admin/messages" className="dropdown-item">Messages</NavLink>
-                  <NavLink to="/admin/enquires" className="dropdown-item">Enquires</NavLink>
-                  <NavLink to="/admin/add" className="dropdown-item">Add New</NavLink>
+                <LinkContainer to="/" exact="true">
+                  <Nav.Link>Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/accommodations">
+                  <Nav.Link>Accommodations</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/contact">
+                  <Nav.Link>Contact</Nav.Link>
+                </LinkContainer>
+                <NavDropdown title="Admin" id="collasible-nav-dropdown">
+                  <LinkContainer to="/admin/messages">
+                    <Nav.Link className="dropdown-item">Messages</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/enquires">
+                    <Nav.Link className="dropdown-item">Enquires</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/add">
+                    <Nav.Link className="dropdown-item">Add New</Nav.Link>
+                  </LinkContainer>
                 </NavDropdown>
                 <Button className="mx-auto" onClick={signout}>Sign out</Button>
               </>
             ) : (
               <>
-                <NavLink to="/" exact="true" className="nav-link">Home</NavLink>
-                <NavLink to="/accommodations" className="nav-link">Accommodations</NavLink>
-                <NavLink to="/contact" className="nav-link">Contact</NavLink>
-                <NavLink to="/signin" className="nav-link navbar-nav__signin btn mx-auto">Sign in</NavLink>
+                <LinkContainer to="/">
+                  <Nav.Link exact="true">Home</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/accommodations">
+                  <Nav.Link>Accommodations</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/contact">
+                  <Nav.Link>Contact</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/signin">
+                  <Nav.Link className="navbar-nav__signin btn mx-auto">Sign in</Nav.Link>
+                </LinkContainer>
               </>
             )}
           </Nav>

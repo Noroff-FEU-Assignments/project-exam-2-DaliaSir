@@ -40,10 +40,6 @@
   }
 }
 
-a.nav-link.active {
-  border-bottom: 1px solid $colour-background-footer;
-}
-
 .navbar-toggler {
   border: none;
   &:focus {
@@ -55,7 +51,7 @@ a.nav-link.active {
 .navbar-collapse {
   background: $colour-background;
   position: absolute;
-  top: 55px;
+  top: 70px;
   left: 0;
   width: 100%;
   height: 60vh;
@@ -73,6 +69,7 @@ a.nav-link.active {
   text-align: center;
   .active {
     background-color: $colour-background-footer;
+    color: $colour-ui-secondary;
   }
 }
 
