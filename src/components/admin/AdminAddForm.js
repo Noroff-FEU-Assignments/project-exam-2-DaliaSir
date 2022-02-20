@@ -1,26 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios";
-import * as yup from "yup";
+import { addValidationSchema } from "../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import FormError from "../common/FormError";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-
-const validationSchema = yup.object().shape({
-  name: yup.string().required("Please enter the name of the place").min(3, "Name must be at least 3 characters"),
-  address: yup.string().required("Please enter an address").min(10, "The address must be at least 10 characters"),
-  price: yup.number().required("Please enter the price").positive("Value of price must be a positive number").integer(),
-  guests: yup.number().required("Please enter the max number of guests").positive("Number of guests must be a positive number").integer().min(1),
-  beds: yup.number().required("Please enter the number of beds").positive("Number of beds must be a positive number").integer().min(1),
-  images: yup.mixed().test("numberOFmages", "Please select exactly 5 images", (value) => {
-    return value && value.length === 5;
-  }),
-  is_featured: yup.boolean(),
-  description: yup.string().required("Please enter the description").min(10, "The description must be at least 10 characters"),
-  category: yup.string().required("Please select the category"),
-});
 
 export default function AdminAddForm() {
   const [submitting, setSubmitting] = useState(false);
@@ -32,7 +18,7 @@ export default function AdminAddForm() {
   const http = useAxios();
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(addValidationSchema),
   });
 
   let formData = new FormData();

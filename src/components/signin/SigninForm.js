@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { signinValidationSchema } from "../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import FormError from "../common/FormError";
@@ -12,11 +12,6 @@ import Container from "react-bootstrap/Container";
 
 const url = BASE_URL + TOKEN_PATH;
 
-const validationSchema = yup.object().shape({
-  username: yup.string().required("Please enter your username"),
-  password: yup.string().required("Please enter your password"),
-});
-
 export default function SigninForm() {
   const [submitting, setSubmitting] = useState(false);
   const [signinError, setSigninError] = useState(null);
@@ -25,7 +20,7 @@ export default function SigninForm() {
   const navigate = useNavigate();
 
   const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(signinValidationSchema),
   });
 
   async function onSubmit(data) {

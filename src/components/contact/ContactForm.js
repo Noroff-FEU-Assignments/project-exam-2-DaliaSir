@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import * as yup from "yup";
+import { contactValidationSchema } from "../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { BASE_URL, MESSAGE_PATH } from "../../constants/api";
 import FormError from "../common/FormError";
@@ -10,19 +10,12 @@ import Container from "react-bootstrap/Container";
 
 const url = BASE_URL + MESSAGE_PATH;
 
-const validationSchema = yup.object().shape({
-  name: yup.string().required("Please enter your full name").min(3, "Full name must be at least 3 characters"),
-  email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
-  subject: yup.string().required("Please enter the subject").min(3, "Subject must be at least 3 characters"),
-  message: yup.string().required("Please enter your message").min(10, "The message must be at least 10 characters"),
-});
-
 export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submittingError, setsubmittingError] = useState(null);
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitSuccessful } } = useForm({
-    resolver: yupResolver(validationSchema),
+    resolver: yupResolver(contactValidationSchema),
   });
 
   async function onSubmit(data) {
