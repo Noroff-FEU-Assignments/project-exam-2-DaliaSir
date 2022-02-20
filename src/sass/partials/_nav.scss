@@ -1,5 +1,8 @@
 .navbar-brand img {
   max-width: 200px;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .navbar.navbar-light {
