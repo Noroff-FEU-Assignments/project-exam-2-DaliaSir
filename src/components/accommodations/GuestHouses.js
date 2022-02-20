@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
 import Accommodation from "./Accommodation";
@@ -14,6 +15,7 @@ export default function GuestHouses() {
 
   const url = BASE_URL + ACCOMMODATION_PATH;
   document.title = `Holidaze | Accommodations | Guest Houses`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchAccommodations() {
@@ -63,7 +65,7 @@ export default function GuestHouses() {
     <div className="category-page">
       <Breadcrumb>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/accommodations">Accommodations</Breadcrumb.Item>
+        <Breadcrumb.Item onClick={() => navigate("/accommodations")}>Accommodations</Breadcrumb.Item>
         <Breadcrumb.Item active>Guest Houses</Breadcrumb.Item>
       </Breadcrumb>
       <Heading content="Guest Houses" />
