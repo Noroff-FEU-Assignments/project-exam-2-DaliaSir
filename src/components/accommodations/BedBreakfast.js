@@ -64,7 +64,7 @@ export default function BedBreakfast() {
   return (
     <div className="category-page">
       <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item onClick={() => navigate("/")}>Home</Breadcrumb.Item>
         <Breadcrumb.Item onClick={() => navigate("/accommodations")}>Accommodations</Breadcrumb.Item>
         <Breadcrumb.Item active>Bed and Breakfast</Breadcrumb.Item>
       </Breadcrumb>
