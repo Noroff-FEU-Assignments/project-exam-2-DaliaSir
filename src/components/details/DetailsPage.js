@@ -67,13 +67,17 @@ export default function DetailsPage() {
     <div className="d-flex justify-content-center m-5">
       <Spinner animation="border" />
     </div >
-  );;
+  );
 
   if (error) return <Alert variant="danger">An error occurred: {error}</Alert>;
 
-
-
   function ImageModal(props) {
+    let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
+    for (let i = 0; i < product.images.length; i++) {
+      if (product.images.length > 0) {
+        imageUrl = product.images[i].url;
+      }
+    }
     return (
       <Modal
         {...props}
@@ -88,35 +92,35 @@ export default function DetailsPage() {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={product.images[0].url}
+                src={imageUrl}
                 alt="Second slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={product.images[1].url}
+                src={imageUrl}
                 alt="Second slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={product.images[2].url}
+                src={imageUrl}
                 alt="Third slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={product.images[3].url}
+                src={imageUrl}
                 alt="Fourth slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={product.images[4].url}
+                src={imageUrl}
                 alt="Fifth slide"
               />
             </Carousel.Item>
@@ -221,7 +225,11 @@ export default function DetailsPage() {
 
       <Row className="details-container__image-container">
         {product.images.map((img) => {
-          return <Col className="details-container__image col-12 col-sm-6 col-md-3 col-lg-2" key={img.id} style={{ backgroundImage: `url(${img.url})` }}></Col>
+          let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
+          if (product.images.length > 0) {
+            imageUrl = img.url;
+          }
+          return <Col className="details-container__image col-12 col-sm-6 col-md-3 col-lg-2" key={img.id} style={{ backgroundImage: `url(${imageUrl})` }}></Col>
         })}
         <Button className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
           View images

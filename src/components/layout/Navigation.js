@@ -23,9 +23,11 @@ export default function Navigation() {
     <Navbar collapseOnSelect expand="lg">
       <Container>
         <LinkContainer to="/" exact="true">
-          <Navbar.Brand>
-            <img src={logo} alt="Holidaze logo" />
-          </Navbar.Brand>
+          <Nav.Link>
+            <Navbar.Brand>
+              <img src={logo} alt="Holidaze logo" />
+            </Navbar.Brand>
+          </Nav.Link>
         </LinkContainer>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
