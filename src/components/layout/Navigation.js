@@ -19,7 +19,7 @@ export default function Navigation() {
   }
 
   return (
-    <Navbar expand="lg">
+    <Navbar collapseOnSelect expand="lg">
       <Container>
         <NavLink className="nav-brand-link" to="/" exact="true">
           <Navbar.Brand>

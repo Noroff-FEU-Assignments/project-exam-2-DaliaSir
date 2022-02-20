@@ -39,7 +39,7 @@ export default function SigninForm() {
         identifier: data.username.toLowerCase(),
         password: data.password,
       });
-      console.log("response", response.data);
+      //console.log("response", response.data);
       setAuth(response.data);
       navigate("/");
     } catch (error) {
