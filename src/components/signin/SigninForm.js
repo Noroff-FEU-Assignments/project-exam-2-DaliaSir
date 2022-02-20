@@ -31,15 +31,11 @@ export default function SigninForm() {
   async function onSubmit(data) {
     setSubmitting(true);
     setSigninError(null);
-
-    //console.log(data);
-
     try {
       const response = await axios.post(url, {
         identifier: data.username.toLowerCase(),
         password: data.password,
       });
-      //console.log("response", response.data);
       setAuth(response.data);
       navigate("/");
     } catch (error) {

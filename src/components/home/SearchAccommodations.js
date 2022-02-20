@@ -42,7 +42,6 @@ export default function SearchAccommodations() {
       accommodation.name.toLowerCase().includes(searchInput.toLocaleLowerCase())
     );
 
-
   return (
     <>
       <input className="form-control" type="text" placeholder="Search for a place to stay..." value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
@@ -59,5 +58,5 @@ export default function SearchAccommodations() {
         })}
       </div>
     </>
-  )
+  );
 }

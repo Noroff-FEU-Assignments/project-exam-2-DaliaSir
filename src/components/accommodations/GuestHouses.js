@@ -33,7 +33,6 @@ export default function GuestHouses() {
       } finally {
         setLoading(false);
       }
-
     }
     fetchAccommodations();
 
@@ -51,7 +50,6 @@ export default function GuestHouses() {
   if (error) {
     return <Alert variant="danger">An error occurred: {error}</Alert>;
   }
-
 
   const filteredHotels = accommodations.filter((hotel) => {
     if (hotel.category === "guest house") {

@@ -27,7 +27,7 @@ export default function AdminAddForm() {
   const [submittingError, setsubmittingError] = useState(null);
   const [success, setSuccess] = useState(null);
 
-  document.title = `Holidaze | Admin`;
+  document.title = `Holidaze | Admin | Add`;
   const url = BASE_URL + ACCOMMODATION_PATH;
   const http = useAxios();
 

@@ -33,7 +33,6 @@ export default function Hotels() {
       } finally {
         setLoading(false);
       }
-
     }
     fetchAccommodations();
 
@@ -51,7 +50,6 @@ export default function Hotels() {
   if (error) {
     return <Alert variant="danger">An error occurred: {error}</Alert>;
   }
-
 
   const filteredHotels = accommodations.filter((hotel) => {
     if (hotel.category === "hotel") {

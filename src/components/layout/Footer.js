@@ -51,6 +51,5 @@ export default function Footer() {
       </Row>
       <div className="footer-copy">Copyright © Holidaze 2022</div>
     </footer>
-
   )
 };

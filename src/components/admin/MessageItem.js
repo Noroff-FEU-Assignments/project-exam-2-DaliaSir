@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-
 export default function MessageItem({ id, name, email, created_at, subject, message }) {
   const [modalShow, setModalShow] = useState(false);
 

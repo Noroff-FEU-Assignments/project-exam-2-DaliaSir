@@ -5,7 +5,6 @@
 
   &__form {
     max-width: $bootstrap-md;
-
     .btn.btn-primary {
       color: $colour-ui-primary;
       background-color: $colour-primary;
@@ -18,7 +17,6 @@
         background-color: transparent;
       }
     }
-
     &--success-message {
       color: $colour-success;
       margin-bottom: 20px;

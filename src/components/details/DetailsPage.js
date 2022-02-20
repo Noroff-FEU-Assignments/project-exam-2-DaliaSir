@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, ENQUIRY_PATH } from "../../constants/api";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Heading from "../layout/Heading";
+import emptyImage from "../../images/empty-image.png"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
@@ -40,6 +42,7 @@ export default function DetailsPage() {
   });
 
   let { id } = useParams();
+  const navigate = useNavigate();
 
   const url = BASE_URL + `accommodations/${id}`;
   const urlEnquiries = BASE_URL + ENQUIRY_PATH;
@@ -58,9 +61,7 @@ export default function DetailsPage() {
         setLoading(false);
       }
     }
-
     getData();
-
   }, [url]);
 
   if (loading) return (
@@ -72,57 +73,31 @@ export default function DetailsPage() {
   if (error) return <Alert variant="danger">An error occurred: {error}</Alert>;
 
   function ImageModal(props) {
-    let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
+    let imageUrl = emptyImage;
     for (let i = 0; i < product.images.length; i++) {
       if (product.images.length > 0) {
         imageUrl = product.images[i].url;
       }
     }
     return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        className="details-modal-view"
-      >
+      <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered className="details-modal-view">
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body >
           <Carousel variant="dark" className="details-carousel">
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imageUrl}
-                alt="Second slide"
-              />
+              <img className="d-block w-100" src={imageUrl} alt="First slide" />
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imageUrl}
-                alt="Second slide"
-              />
+              <img className="d-block w-100" src={imageUrl} alt="Second slide" />
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imageUrl}
-                alt="Third slide"
-              />
+              <img className="d-block w-100" src={imageUrl} alt="Third slide" />
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imageUrl}
-                alt="Fourth slide"
-              />
+              <img className="d-block w-100" src={imageUrl} alt="Fourth slide" />
             </Carousel.Item>
             <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={imageUrl}
-                alt="Fifth slide"
-              />
+              <img className="d-block w-100" src={imageUrl} alt="Fifth slide" />
             </Carousel.Item>
           </Carousel>
         </Modal.Body>
@@ -136,9 +111,6 @@ export default function DetailsPage() {
   async function onSubmit(data) {
     setSubmitting(true);
     setsubmittingError(null);
-
-    //console.log(data);
-
     try {
       const response = await axios.post(urlEnquiries, data);
       console.log("response", response.data);
@@ -153,14 +125,7 @@ export default function DetailsPage() {
 
   function BookModal(props) {
     return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        animation
-        className="enquiry-modal"
-      >
+      <Modal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered animation className="enquiry-modal" >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             Book {product.name}
@@ -217,15 +182,14 @@ export default function DetailsPage() {
   return (
     <div className="details-container container">
       <Breadcrumb>
-        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-        <Breadcrumb.Item href="/accommodations">Accommodations</Breadcrumb.Item>
+        <Breadcrumb.Item onClick={() => navigate("/")}>Home</Breadcrumb.Item>
+        <Breadcrumb.Item onClick={() => navigate("/accommodations")}>Accommodations</Breadcrumb.Item>
         <Breadcrumb.Item active>{product.name}</Breadcrumb.Item>
       </Breadcrumb>
       <Heading content={product.name} />
-
       <Row className="details-container__image-container">
         {product.images.map((img) => {
-          let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
+          let imageUrl = emptyImage;
           if (product.images.length > 0) {
             imageUrl = img.url;
           }
@@ -234,13 +198,8 @@ export default function DetailsPage() {
         <Button className="details-container__btn-view" onClick={() => setModalImageShow(true)}>
           View images
         </Button>
-
-        <ImageModal
-          show={modalImageShow}
-          onHide={() => setModalImageShow(false)}
-        />
+        <ImageModal show={modalImageShow} onHide={() => setModalImageShow(false)} />
       </Row>
-
       <Row className="details-container__info">
         <p className="details-container__info--price">{product.price} <span>NOK / per night</span></p>
         <div className="details-container__info--capacity">
@@ -254,11 +213,7 @@ export default function DetailsPage() {
       <Button className="details-container__btn-book" onClick={() => setModalBookShow(true)}>
         Book
       </Button>
-      <BookModal
-        show={modalBookShow}
-        onHide={() => setModalBookShow(false)}
-      />
-
+      <BookModal show={modalBookShow} onHide={() => setModalBookShow(false)} />
     </div>
   );
 }

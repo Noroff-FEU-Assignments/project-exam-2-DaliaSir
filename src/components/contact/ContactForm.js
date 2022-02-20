@@ -29,8 +29,6 @@ export default function ContactForm() {
     setSubmitting(true);
     setsubmittingError(null);
 
-    console.log(data);
-
     try {
       const response = await axios.post(url, data);
       console.log("response", response.data);

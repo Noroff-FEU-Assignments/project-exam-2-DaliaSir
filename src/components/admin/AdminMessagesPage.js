@@ -13,9 +13,8 @@ export default function AdminMessagesPage() {
   const [error, setError] = useState(null);
 
   const url = BASE_URL + MESSAGE_PATH;
-  document.title = `Holidaze | Admin`;
+  document.title = `Holidaze | Admin | Messages`;
   const http = useAxios();
-
 
   useEffect(() => {
     async function fetchMessages() {

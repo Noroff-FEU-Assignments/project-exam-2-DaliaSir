@@ -25,18 +25,16 @@ export default function BestSellers() {
         } else {
           setError("An error occurred");
         }
-
       } catch (error) {
         setError(error.toString());
       } finally {
         setLoading(false);
       }
-
     }
     fetchAccommodations();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url]);
 
   if (loading) {
     return (
@@ -49,8 +47,6 @@ export default function BestSellers() {
   if (error) {
     return <Alert variant="danger">An error occurred: {error}</Alert>;
   }
-
-
 
   return (
     <Row className="best-sellers-container container">
@@ -65,7 +61,6 @@ export default function BestSellers() {
         } else {
           return error;
         }
-
       })}
     </Row>
   );

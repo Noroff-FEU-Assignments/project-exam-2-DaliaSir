@@ -14,9 +14,8 @@ export default function AdminEnquiresPage() {
   const [error, setError] = useState(null);
 
   const url = BASE_URL + ENQUIRY_PATH;
-  document.title = `Holidaze | Admin`;
+  document.title = `Holidaze | Admin | Enquires`;
   const http = useAxios();
-
 
   useEffect(() => {
     async function fetchEnquiries() {
@@ -34,7 +33,7 @@ export default function AdminEnquiresPage() {
     fetchEnquiries();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url]);
 
   if (loading) {
     return (
@@ -61,6 +60,5 @@ export default function AdminEnquiresPage() {
       </Container>
     </div>
   );
-
 }
 
