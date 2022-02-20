@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import logo from "../../images/Holidaze logo circle.svg";
+import logo from "../../images/Holidaze logo.svg";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";

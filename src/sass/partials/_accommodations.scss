@@ -1,10 +1,19 @@
-.accommodations-page {
+.accommodations-page,
+.category-page {
   background-color: $colour-background;
   padding-bottom: 60px;
   min-height: 100vh;
 }
 
-.accommodations-container {
+.accommodations-page {
+  .form-select {
+    max-width: 250px;
+    margin: 0 auto 40px auto;
+  }
+}
+
+.accommodations-container,
+.accommodations-category-container {
   margin: 0 auto;
   padding: 0 10px;
   a {
@@ -46,5 +55,19 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+}
+
+.category-page {
+  .breadcrumb {
+    padding: 30px 20px;
+  }
+}
+
+@media (min-width: $bootstrap-lg) {
+  .accommodations-category-container {
+    .col-lg-3.col-sm-6 {
+      width: 32%;
+    }
   }
 }

@@ -1,22 +1,19 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { BASE_URL, ACCOMMODATION_PATH } from "../../constants/api";
 import Heading from "../layout/Heading";
 import Accommodation from "./Accommodation";
 import Row from "react-bootstrap/Row";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
-import Form from "react-bootstrap/Form";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
 
-export default function AccommodationsPage() {
+export default function GuestHouses() {
   const [accommodations, setAccommodations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const url = BASE_URL + ACCOMMODATION_PATH;
-  document.title = `Holidaze | Accommodations`;
-
-  const navigate = useNavigate();
+  document.title = `Holidaze | Accommodations | Guest Houses`;
 
   useEffect(() => {
     async function fetchAccommodations() {
@@ -34,6 +31,7 @@ export default function AccommodationsPage() {
       } finally {
         setLoading(false);
       }
+
     }
     fetchAccommodations();
 
@@ -52,24 +50,25 @@ export default function AccommodationsPage() {
     return <Alert variant="danger">An error occurred: {error}</Alert>;
   }
 
-  function handleChange(value) {
-    console.log(value);
-    navigate(`/accommodations/${value}`);
-  }
+
+  const filteredHotels = accommodations.filter((hotel) => {
+    if (hotel.category === "guest house") {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
   return (
-    <div className="accommodations-page">
-      <Heading content="Accommodations" />
-      <Form>
-        <Form.Select onChange={e => handleChange(e.target.value)}>
-          <option value="">All accommodations</option>
-          <option value="bed-and-breakfast">Bed and Breakfast</option>
-          <option value="guest-houses">Guest Houses</option>
-          <option value="hotels">Hotels</option>
-        </Form.Select>
-      </Form>
-      <Row className="accommodations-container container">
-        {accommodations.map((accommodation) => {
+    <div className="category-page">
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/accommodations">Accommodations</Breadcrumb.Item>
+        <Breadcrumb.Item active>Guest Houses</Breadcrumb.Item>
+      </Breadcrumb>
+      <Heading content="Guest Houses" />
+      <Row className="accommodations-category-container container">
+        {filteredHotels.map((accommodation) => {
           const { id, name, images, price, guests, beds } = accommodation;
           let imageUrl = 'https://images.unsplash.com/photo-1612437118782-84bb46a5c95a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80';
           if (images.length > 0) {

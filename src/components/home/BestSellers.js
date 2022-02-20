@@ -17,10 +17,10 @@ export default function BestSellers() {
     async function fetchAccommodations() {
       try {
         const response = await fetch(url);
-        console.log(response);
+        //console.log(response);
         if (response.ok) {
           const json = await response.json();
-          console.log(json);
+          //console.log(json);
           setAccommodations(json);
         } else {
           setError("An error occurred");

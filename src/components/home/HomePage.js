@@ -1,10 +1,11 @@
-import topBanner from "../../images/mao-yuqing-15-unsplash155.jpg"
-import bottomBanner from "../../images/sharon-christina-rorvik-unsplash.jpg";
-import planeImage from "../../images/plane.svg"
-import planeTail from "../../images/plane-tail2.svg"
+import topBanner from "../../images/top-banner-mao-yuqing.jpg";
+import bottomBanner from "../../images/bottom-banner-sharon-christina-rorvik.jpg";
+import planeImage from "../../images/plane.svg";
+import planeTail from "../../images/plane-tail2.svg";
 import Heading from "../layout/Heading";
 import SearchAccommodations from "./SearchAccommodations";
 import BestSellers from "./BestSellers";
+import CategoryLinks from "./CategoryLinks";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
@@ -29,6 +30,11 @@ export default function HomePage() {
             <Link to="/accommodations" className="btn">View all Accommodations</Link>
           </div>
         </div>
+      </div>
+
+      <div className="category-container">
+        <Heading size="2" content="Where would you spend your holiday?" />
+        <CategoryLinks />
       </div>
 
       <div className="subscribe-banner">

@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import HomePage from "./components/home/HomePage";
 import AccommodationsPage from "./components/accommodations/AccommodationsPage";
+import Hotels from "./components/accommodations/Hotels";
+import BedBreakfast from "./components/accommodations/BedBreakfast";
+import GuestHouses from "./components/accommodations/GuestHouses";
 import ContactPage from "./components/contact/ContactPage";
 import SigninPage from "./components/signin/SigninPage";
 import AdminAddPage from "./components/admin/AdminAddPage";
@@ -22,6 +25,9 @@ function App() {
           <Routes>
             <Route path="/" exact="true" element={<HomePage />} />
             <Route path="/accommodations" element={<AccommodationsPage />} />
+            <Route path="/accommodations/hotels" element={<Hotels />} />
+            <Route path="/accommodations/bed-and-breakfast" element={<BedBreakfast />} />
+            <Route path="/accommodations/guest-houses" element={<GuestHouses />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/signin" element={<SigninPage />} />
             <Route path="/admin/add" element={<AdminAddPage />} />
