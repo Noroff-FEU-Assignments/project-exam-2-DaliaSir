@@ -11,16 +11,14 @@ export default function BestSellers() {
   const [error, setError] = useState(null);
 
   const url = BASE_URL + ACCOMMODATION_PATH;
-  document.title = `Holidaze | Accommodations`;
+  document.title = `Holidaze | Home`;
 
   useEffect(() => {
     async function fetchAccommodations() {
       try {
         const response = await fetch(url);
-        //console.log(response);
         if (response.ok) {
           const json = await response.json();
-          //console.log(json);
           setAccommodations(json);
         } else {
           setError("An error occurred");
